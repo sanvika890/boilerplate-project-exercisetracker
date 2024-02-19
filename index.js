@@ -48,10 +48,8 @@ app.post("/api/users/:_id/exercises", function (req, res) {
     _id: id,
   });
 
-  const user = users.filter((item)=>item._id == id).map((i)=>{
-    return {...i,exercises:[...exercises]}
-  })[0]
-  res.json(user);
+  
+  res.json({_id: userVal[0]._id, username:userVal[0].username, date:date, duration:parseInt(duration), description:description});
 });
 
 app.get("/api/users/:_id/logs",function(req,res){
