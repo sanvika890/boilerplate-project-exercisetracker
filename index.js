@@ -76,9 +76,9 @@ if(req.query.to && req.query.to !==""){
 }
 
  const logObj={
-  username:users.filter((item)=>item._id==id)[0].username,
-  count:exercises.filter((item)=>item._id == id).length,
-  _id:id,
+  username:users.filter((item)=>item._id==id)[0].username || "",
+  count:exercises.filter((item)=>item._id == id).length || 0,
+  _id:id || "",
   log:filterVal.map((item)=>{
     return{description:item.description,duration:parseInt(item.duration),date:item.date}
   }).slice(0,limit)
