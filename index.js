@@ -23,7 +23,7 @@ app.post("/api/users", function (req, res) {
 });
 
 app.get("/api/users", function (req, res) {
-  res.send(users);
+  res.json(users);
 });
 
 app.post("/api/users/:_id/exercises", function (req, res) {
