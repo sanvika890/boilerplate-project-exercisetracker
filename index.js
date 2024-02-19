@@ -47,10 +47,10 @@ app.post("/api/users/:_id/exercises", function (req, res) {
     date: date,
     _id: id,
   });
-  console.log(exercises)
+
   const user = users.filter((item)=>item._id == id).map((i)=>{
     return {...i,exercises:[...exercises]}
-  })
+  })[0]
   res.json(user);
 });
 
@@ -83,6 +83,10 @@ if(req.query.to && req.query.to !==""){
     return{description:item.description,duration:parseInt(item.duration),date:item.date}
   }).slice(0,limit)
  }
+
+ const user = users.filter((item)=>item._id == id).map((i)=>{
+  return {...i,log:logObj}
+})[0]
  res.json(logObj)
 
 })
