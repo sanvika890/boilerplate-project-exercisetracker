@@ -27,24 +27,22 @@ app.get("/api/users", function (req, res) {
 });
 
 app.post("/api/users/:_id/exercises", function (req, res) {
-  const id = req.body[":_id"];
+  const id = req.params._id;
   let username = "";
   let userVal = users.filter((item) => item._id == id);
   if (userVal.length > 0) {
     username = userVal[0].username;
   }
-let date=""
+let date=req.body.date ? new Date(req.body.date).toDateString():new Date().toDateString()
   let { description, duration } = req.body;
-  if (req.body.date === "" || !req.body.date) {
-    date = new Date().toDateString();
-  } else {
-    date = new Date(req.body.date).toDateString();
-  }
+  
   exercises.push({
     username: username,
     description: description,
     duration: parseInt(duration),
-    date: date,
+    date: req.body.date
+    ? new Date(req.body.date).toDateString()
+    : new Date().toDateString(),
     _id: id,
   });
   
