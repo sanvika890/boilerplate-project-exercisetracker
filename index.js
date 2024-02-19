@@ -47,13 +47,11 @@ app.post("/api/users/:_id/exercises", function (req, res) {
     date: date,
     _id: id,
   });
-  res.json({
-    username: username,
-    description: description,
-    duration: parseInt(duration),
-    date: date,
-    _id: id,
-  });
+  console.log(exercises)
+  const user = users.filter((item)=>item._id == id).map((i)=>{
+    return {...i,exercises:[...exercises]}
+  })
+  res.json(user);
 });
 
 app.get("/api/users/:_id/logs",function(req,res){
@@ -85,7 +83,7 @@ if(req.query.to && req.query.to !==""){
     return{description:item.description,duration:parseInt(item.duration),date:item.date}
   }).slice(0,limit)
  }
- res.send(logObj)
+ res.json(logObj)
 
 })
 
