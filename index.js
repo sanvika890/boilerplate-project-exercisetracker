@@ -33,9 +33,9 @@ app.post("/api/users/:_id/exercises", function (req, res) {
   if (userVal.length > 0) {
     username = userVal[0].username;
   }
-
-  let { description, duration, date } = req.body;
-  if (date === "") {
+let date=""
+  let { description, duration } = req.body;
+  if (req.body.date === "" || !req.body.date) {
     date = new Date().toDateString();
   } else {
     date = new Date(date).toDateString();
