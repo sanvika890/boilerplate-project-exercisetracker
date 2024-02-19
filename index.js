@@ -38,7 +38,7 @@ let date=""
   if (req.body.date === "" || !req.body.date) {
     date = new Date().toDateString();
   } else {
-    date = new Date(date).toDateString();
+    date = new Date(req.body.date).toDateString();
   }
   exercises.push({
     username: username,
@@ -47,7 +47,6 @@ let date=""
     date: date,
     _id: id,
   });
-
   
   res.json({_id: userVal[0]._id, username:userVal[0].username, date:date, duration:parseInt(duration), description:description});
 });
