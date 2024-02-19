@@ -18,8 +18,8 @@ const logs=[]
 app.post("/api/users", function (req, res) {
   const username = req.body.username;
   const id = Math.floor(Math.random(0, 1) * 1000);
-  users.push({ username: username, _id: id });
-  res.json({ username: username, _id: id });
+  users.push({ username: username, _id: id.toString() });
+  res.json({ username: username, _id: id.toString() });
 });
 
 app.get("/api/users", function (req, res) {
